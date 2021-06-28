@@ -6,7 +6,7 @@ const jobs = [
 ];
 
 module.exports.jobFindOne = async (evt, ctx) => {
-  const jobId = evt.pathParameters.id;
+  const jobId = evt.id;
   const jobQuery = jobs.filter((item) => parseInt(item.id) === parseInt(jobId));
   const jobFound = jobQuery.length > 0;
   const code = !jobFound ? 404 : 200;
