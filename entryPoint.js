@@ -1,0 +1,1 @@
+const message = "Is that normal? This message here? I Mean...";

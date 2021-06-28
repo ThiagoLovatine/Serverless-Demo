@@ -1,7 +1,7 @@
 {
   "name": "sls-demo",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "entryPoint.js",
   "license": "MIT",
   "scripts": {
     "dev": "sls offline --httpPort 3000"
