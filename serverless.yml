@@ -36,6 +36,17 @@ provider:
   lambdaHashingVersion: 20201221
   environment:
     TABLE_JOBS: JobsDBTable
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "*"
 
   # you can overwrite defaults here
   stage: dev

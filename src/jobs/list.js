@@ -1,10 +1,7 @@
 const AWS = require("aws-sdk");
 
-const DynamoDB = new AWS.DynamoDB.DocumentClient({
-  region: "localhost",
-  endpoint: "http://localhost:8000",
-});
-
+const options = process.env.IS_OFFLINE ? { region: "localhost", endpoint: "http://localhost:8000" } : {}
+const DynamoDB = new AWS.DynamoDB.DocumentClient(options);
 
 module.exports.jobList = async (evt, ctx) => {
   params = {

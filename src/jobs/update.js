@@ -1,11 +1,8 @@
 const AWS = require("aws-sdk");
-const UUID = require("uuid");
 const Joi = require("joi");
 
-const DynamoDB = new AWS.DynamoDB.DocumentClient({
-  region: "localhost",
-  endpoint: "http://localhost:8000",
-});
+const options = process.env.IS_OFFLINE ? { region: "localhost", endpoint: "http://localhost:8000" } : {}
+const DynamoDB = new AWS.DynamoDB.DocumentClient(options);
 
 const validateRequest = async (params) => {
   const schema = Joi.object({
