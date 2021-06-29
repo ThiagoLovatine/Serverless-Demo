@@ -16,6 +16,17 @@ service: sls-demo
 #app: your-app-name
 #org: your-org-name
 
+custom:
+  dynamodb:
+    stages:
+        - ${self:provider.stage}
+    start:
+      port: 8000
+      migrate: true
+      inMemory: true
+      onStart: true
+      
+
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 frameworkVersion: "2"
@@ -84,6 +95,23 @@ functions:
             parameters:
               paths:
                 id: true
+
+resources:
+  Resources:
+    JobsDBTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: 'JobsDBTable'
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -138,3 +166,6 @@ functions:
 
 plugins:
   - serverless-offline
+  - serverless-dynamodb-local
+
+
