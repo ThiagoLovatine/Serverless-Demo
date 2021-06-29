@@ -19,13 +19,12 @@ service: sls-demo
 custom:
   dynamodb:
     stages:
-        - ${self:provider.stage}
+      - ${self:provider.stage}
     start:
       port: 8000
       migrate: true
       inMemory: true
       onStart: true
-      
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -96,6 +95,17 @@ functions:
               paths:
                 id: true
 
+  jobUpdate:
+    handler: src/jobs/update.jobUpdate
+    events:
+      - http:
+          method: PUT
+          path: /jobs/{id}
+          request:
+            parameters:
+              paths:
+                id: true
+
   jobDelete:
     handler: src/jobs/delete.jobDelete
     events:
@@ -112,7 +122,7 @@ resources:
     JobsDBTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: 'JobsDBTable'
+        TableName: "JobsDBTable"
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
@@ -178,5 +188,3 @@ resources:
 plugins:
   - serverless-offline
   - serverless-dynamodb-local
-
-
