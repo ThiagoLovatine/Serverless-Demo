@@ -1,6 +1,8 @@
-# Serverless-Demo
+# Build Serverless APIs with Serverless Framework and NodeJs
 
-1 - npm i -g serverless
-3 - npm i / yarn
-4 - sls dynamodb install
-5 - yarn dev
+## Setup
+
+- npm i -g serverless
+- npm i / yarn
+- sls dynamodb install
+- yarn dev
