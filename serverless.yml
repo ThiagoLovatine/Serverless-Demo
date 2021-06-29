@@ -81,8 +81,6 @@ provider:
 #    - include-me-dir/**
 
 functions:
-  hello:
-    handler: src/hello/handler.hello
   jobList:
     handler: src/jobs/list.jobList
     events:

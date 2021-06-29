@@ -8,6 +8,7 @@ module.exports.jobList = async (evt, ctx) => {
     TableName: process.env.TABLE_JOBS,
     Limit: 10
   }
+  
   const newJobResponse = await DynamoDB.scan(params).promise();
 
   return {
