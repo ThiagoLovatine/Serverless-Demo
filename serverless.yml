@@ -88,13 +88,6 @@ functions:
           method: GET
           path: /jobs
 
-  test123:
-    handler: src/jobs/test123.jobList
-    events:
-      - http:
-          method: GET
-          path: /test123
-
   jobCreate:
     handler: src/jobs/create.jobCreate
     events:
