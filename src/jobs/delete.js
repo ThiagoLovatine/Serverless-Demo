@@ -5,7 +5,7 @@ const DynamoDB = new AWS.DynamoDB.DocumentClient({
   endpoint: "http://localhost:8000",
 });
 
-module.exports.jobFindOne = async (evt, ctx) => {
+module.exports.jobDelete = async (evt, ctx) => {
   const id = String(evt.pathParameters.id);
 
   try {
@@ -16,19 +16,16 @@ module.exports.jobFindOne = async (evt, ctx) => {
       },
     };
 
-    const job = await DynamoDB.get(params).promise();
-    const jobFound = job.Item;
-    const body = jobFound ? job : { message: "Job Not Found" };
-    const statusCode = jobFound ? 200 : 404;
+    await DynamoDB.delete(params).promise();
 
     return {
-      statusCode,
-      body: JSON.stringify(body),
+      statusCode: 200,
+      body: JSON.stringify({message: 'Job deleted!'}),
     };
   } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify(err),
+      body: JSON.stringify({message: 'Error deleting job'}),
     };
   }
 };

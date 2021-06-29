@@ -96,6 +96,17 @@ functions:
               paths:
                 id: true
 
+  jobDelete:
+    handler: src/jobs/delete.jobDelete
+    events:
+      - http:
+          method: DELETE
+          path: /jobs/{id}
+          request:
+            parameters:
+              paths:
+                id: true
+
 resources:
   Resources:
     JobsDBTable:
