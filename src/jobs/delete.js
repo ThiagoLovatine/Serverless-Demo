@@ -10,7 +10,7 @@ module.exports.jobDelete = async (evt, ctx) => {
 
   try {
     const params = {
-      TableName: "JobsDBTable",
+      TableName: process.env.TABLE_JOBS,
       Key: {
         id,
       },

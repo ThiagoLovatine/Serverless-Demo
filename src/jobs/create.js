@@ -31,7 +31,7 @@ module.exports.jobCreate = async (evt, ctx) => {
   const timestamp = new Date().getTime();
 
   const newJobParams = {
-    TableName: "JobsDBTable",
+    TableName: process.env.TABLE_JOBS,
     Item: {
       id: UUID.v1(),
       title: data.title,

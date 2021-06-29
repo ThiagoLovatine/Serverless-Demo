@@ -32,7 +32,7 @@ module.exports.jobUpdate = async (evt, ctx) => {
   const timestamp = new Date().getTime();
 
   const newJobParams = {
-    TableName: "JobsDBTable",
+    TableName: process.env.TABLE_JOBS,
     UpdateExpression: "SET title=:title, published=:published, updatedAt=:updatedAt",
     ExpressionAttributeValues: {
         ':title': data.title,

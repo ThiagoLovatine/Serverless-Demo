@@ -8,7 +8,7 @@ const DynamoDB = new AWS.DynamoDB.DocumentClient({
 
 module.exports.jobList = async (evt, ctx) => {
   params = {
-    TableName: "JobsDBTable",
+    TableName: process.env.TABLE_JOBS,
     Limit: 10
   }
   const newJobResponse = await DynamoDB.scan(params).promise();
